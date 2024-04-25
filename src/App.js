@@ -1,25 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
-
-function App() {
+import { Cita } from './components/Cita/Cita';
+import { Formulario } from './components/Formulario/Formulario';
+export function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>ADMINISTRADOR DE PACIENTES</h1>
+      <div className="container">
+        <div className="row">
+          <div className="one-half column">
+            <h2>Crear mi Cita</h2>
+            <Formulario/>
+          </div>
+          <div className="one-half column">
+            <h2>Administra tus citas</h2>
+            <Cita mascota='Yukelson' dueño='Iao' fecha='206 A.C-09-24' hora='14:30' sintomas='Esta viejo'/>
+            <Cita mascota='Sifon' dueño='Mateo' fecha='2020-12-12' hora='01:00' sintomas='dice miau y es un perro'/>
+            <Cita mascota='Iao' dueño='Yukelson' fecha='2006-10-12' hora='9:00' sintomas='Duerme todo el dia'/>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
-
-export default App;
