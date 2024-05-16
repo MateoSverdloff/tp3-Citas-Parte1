@@ -1,7 +1,21 @@
+import React, { useState } from 'react';
 import './App.css';
 import { Cita } from './components/Cita/Cita';
 import { Formulario } from './components/Formulario/Formulario';
+
 export function App() {
+  const [citas, setCitas] = useState([]);
+
+  const agregarCita = (nuevaCita) => {
+    const citaConId = { ...nuevaCita, id: Date.now() };
+    setCitas([...citas, citaConId]);
+  };
+
+  const eliminarCita = (id) => {
+    const nuevasCitas = citas.filter((cita) => cita.id !== id);
+    setCitas(nuevasCitas);
+  };
+
   return (
     <>
       <h1>ADMINISTRADOR DE PACIENTES</h1>
@@ -9,13 +23,13 @@ export function App() {
         <div className="row">
           <div className="one-half column">
             <h2>Crear mi Cita</h2>
-            <Formulario/>
+            <Formulario agregarCita={agregarCita} />
           </div>
           <div className="one-half column">
             <h2>Administra tus citas</h2>
-            <Cita mascota='Yukelson' dueño='Iao' fecha='206 A.C-09-24' hora='14:30' sintomas='Esta viejo'/>
-            <Cita mascota='Sifon' dueño='Mateo' fecha='2020-12-12' hora='01:00' sintomas='dice miau y es un perro'/>
-            <Cita mascota='Iao' dueño='Yukelson' fecha='2006-10-12' hora='9:00' sintomas='Duerme todo el dia'/>
+            {citas.map((cita) => (
+              <Cita key={cita.id} cita={cita} eliminarCita={eliminarCita} />
+            ))}
           </div>
         </div>
       </div>
